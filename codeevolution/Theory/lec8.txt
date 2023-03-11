@@ -1,0 +1,60 @@
+JSX:
+
+Javascript XML - Extension to the Javascript language syntax
+
+Write XML like code for elements and components  
+
+JSX tags have a tag name , attributes and children
+
+JSX is not necessary to write React applications 
+
+JSX makes your react code simpler and elegant 
+
+JSX ultimately transpiles to pure Javascript which is understood by browsers
+
+--------------------------------
+
+lets create a component using JSX:
+
+import React from 'react';
+
+const Hello = ()=>{
+    return <div>
+                <h1>Hello Moulali Syed</h1>
+            </div>
+} 
+
+export default Hello;
+
+-----------------------------
+lets do the same without using JSX
+
+
+import React from 'react';
+
+const Hello2 = ()=>{
+    return React.createElement('div',{},React.createElement('h1',{},'Hello Moulali Syed'))
+}
+
+export default Hello2;
+
+
+---------------------
+
+React.createElement --- accepts 3 arguments
+        1st - is the element tag 
+        2nd is an object with attribute and values 
+        3rd is the either the content or a child element 
+
+        React.createElement('div',{id:'box'},'Hi There');
+---------------------
+
+JSX differences:
+
+    class ---> className 
+    for ----> htmlFor
+
+    camelCase property naming convention 
+        onclick --> onClick 
+        tabindex --> tabIndex 
+

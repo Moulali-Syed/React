@@ -1,0 +1,60 @@
+Props:
+
+Lets see a way we can reuse a component and greet different people
+
+
+lets understand props :
+
+const Greet = (props)=>{
+    return <h1>hello {props.name}  {props.heroName}</h1>
+}
+
+const App = ()=>{
+    return (<>
+                <Greet name="Apple"  heroName="Fruit"/>
+            </>);
+}
+
+--------------------------------------------------------------------
+Lets understand children props 
+
+say i want to send data when calling a component , in between opening and closing component tag 
+
+they can be retrieved as children props 
+
+
+const App = ()=>{
+    return <Greet>Hi There</Greet>
+}
+
+const Greet = (props) => {
+    return <h1>{props.children}</h1>;
+}
+--------------------------------------------------------------------
+
+
+import React from 'react';
+
+class GreetClass extends React.Component{
+    render(){
+        return <h1>{this.props.name} {this.props.children}</h1>;
+    }
+}
+
+
+export default GreetClass ;
+
+
+import GreetClass from './Components/GreetClass';
+const App = ()=>{
+    return <GreetClass name="Apple">Hi There !!!</GreetClass>
+}
+
+export default App;
+
+============================================================
+
+*** Props are immutable ***
+if we try to do that we can see our application breaks , with TypeError
+
+Uncaught TypeError: Cannot assign to read only property 'name' of object

@@ -1,0 +1,50 @@
+Class Components:
+
+Class Components can also optionally receive props and return HTML
+
+  Properties  ------>   ES6 Class  ------>  HTML(JSX)
+    (props)
+
+
+Class - can maintain a private state variable , that can helps it display something that is
+private to that class Component
+
+
+import React from 'react';
+
+class GreetClass extends React.Component{
+    render(){
+        return <h1>Hello Good Morning From Class Component </h1>
+    }
+}
+
+export default GreetClass;
+
+-----
+
+import GreetClass from './Components/GreetClass';
+
+function App(){
+    return (<>
+                <GreetClass/>
+            </>
+            )
+}
+
+----------------
+
+Functional vs Class Components:
+
+Functional:
+
+Simple Functions
+Use Func components as much as possible
+Absence of this keyword
+Solution without using state 
+Mainly responsible for UI 
+
+Class Components:
+Maintain private data - state 
+Complex UI logic
+Life cycle hooks 
+

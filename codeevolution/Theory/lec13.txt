@@ -1,0 +1,22 @@
+Event Handling:
+
+in functional component:
+
+import React from 'react';
+
+const FunctionClick = () => {
+  function clickHandler() {
+    console.log('button clicked');
+  }
+  return (
+    <>
+      <button onClick={clickHandler}>Click</button>
+    </>
+  );
+};
+
+export default FunctionClick;
+
+have a closer look at the clickHandler , inside the onClick , it is not a function clickHandler
+
+===========================================================================

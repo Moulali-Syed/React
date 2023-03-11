@@ -1,0 +1,7 @@
+package.json ---> has the information about the dependencies , is the most important file 
+
+
+index.html , inside public folder , is the only html file we render
+
+
+source folder: it is where we mostly work  

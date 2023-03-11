@@ -1,0 +1,22 @@
+Lets create a react application
+
+npx create-react-app appName
+
+
+Then we move to the app location 
+cd appName 
+
+
+start the application
+
+npm start 
+
+
+=======================================================================
+Alternative approach:
+
+npm install create-react-app -g      , this helps for a global installtion
+
+then we can create the react project as below
+
+create-react-app <project_name>

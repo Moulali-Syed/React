@@ -1,0 +1,60 @@
+State:
+
+We have seen what can be rendered on a screen can be influenced using props
+
+There is another way that we can do that , is using state of component
+
+
+props vs state :
+
+props                                                   state 
+props get passed to component                           state is managed within the component 
+Analogy: Function Parameters                            Analogy: variables declared in the function body 
+props are immuatable                                    state is managed by a component and has full control
+
+Accessed in functional components                        state - can be accessed using 
+using - props                                            useState hook in functional component 
+
+Accessed in Class components using                      state - can be accessed using
+this.props                                              this.state - in class components 
+
+=============================================================================
+Lets see how to we maintain state in a class component
+
+
+say we have a requirement that on clicking a button , the text displayed should be 
+changing from Welcome Visitor  to  Thanks for subscribing
+
+
+
+import React from 'react';
+
+class Message extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            message:"Welcome Visitor"
+        }
+    }
+    changeMessage(){
+        this.setState({
+            message:"Thank you for Subscribing"
+        })
+    }
+    render(){
+        return (
+            <div>
+                <h1>{this.state.message}</h1>
+                <button onClick={()=>{this.changeMessage()}}>Subscribe</button>
+            </div>
+        )
+    }
+}
+
+export default Message;
+
+
+A state is an object that is privately maintained inside a component 
+this can influence what can be rendered in the browser 
+
+state can be changed within the component 

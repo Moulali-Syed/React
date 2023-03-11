@@ -1,0 +1,52 @@
+Destructuring Props and State :
+
+import React from 'react';
+
+const Greet = (props) => {
+    return <h1>{props.name} {props.heroName}</h1>
+}
+
+export default Greet;
+
+we import this inside App and call the component 
+
+<Greet name="Apple" heroName="Shimla"/>
+
+---------------------------------------------------------------------
+Now lets destructure props 
+
+import React from 'react';
+
+const Greet = ({name,heroName})=>{
+    return <h1>{name} {heroName}</h1>
+}
+
+export default Greet;
+
+<Greet name="Apple" heroName="Shimla" />
+---------------------------------------------------------------------
+
+import React from 'react';
+
+const Greet = (props)=>{
+    const {name,heroName} = props;
+
+    return <h1>{name} {heroName}</h1>
+}
+
+export default Greet;
+---------------------------------------------------------------------
+import React from 'react';
+
+class Greet extends React.Component{
+    const {name,heroName} = this.props;
+
+//similarly we can destructure state 
+    const [state1, state2] = this.state;
+    
+    render(){
+        return <h1>{name} {heroName}</h1>
+    }
+}
+
+export default Greet;

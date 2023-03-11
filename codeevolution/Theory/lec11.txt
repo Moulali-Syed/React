@@ -1,0 +1,184 @@
+state and setState method in react - class based components:
+
+Add the extension - ES7 React/Redux /GraphQL/React-Native Extension 
+
+that has great snippets that save us the time 
+
+
+------------------------------------------------------------------------------
+Lets create a counter component , that has a button that increments the count value 
+
+
+with the extension we can create a class component using the  - rce 
+
+snippet to create constructor - rconst
+
+
+------------------------------------------------------------------------------
+Very important points regarding state change:
+
+1. Always use setState to update the state value , then only react rerenders the component 
+
+increment(){
+    this.state.count = this.state.count+1;
+    console.log(this.state.count);
+}
+
+now when i click on  a button with onClick handler , it will not update UI , but only in console 
+
+So always remember to use setState method to update state value 
+
+increment(){
+    this.setState({
+        count : this.state.count+1
+    })
+
+    console.log(this.state.count);
+}
+
+
+2. calls to the setState are asynchronous ,
+
+with below code snippet we can observe that in ui and console , the count value differs by 1 
+
+increment(){
+    this.setState({
+        count : this.state.count+1
+    })
+
+    console.log(this.state.count);
+}
+
+this is because console.log(), is getting called first and the the asynchronous setState is called 
+
+to overcome this situation, whenever something that is needed to be updated based on state , use a second Parameter
+in the setState a callback function 
+
+increment(){
+    this.setState({
+        count:this.state.count+1
+    },()=>{
+        console.log("callback value ",this.state.count);
+    }
+    )
+    
+}
+
+setState - has 2 parameters - 1.state object , 2.callback function 
+
+
+3.
+
+    lets see silghtly complicated scenario , lets create a function and call increment function 5 times 
+
+    incrementFive(){
+        this.increment();
+        this.increment();
+        this.increment();
+        this.increment();
+        this.increment();
+    }
+
+    this way react will not take the value forward , it will call all at a time 
+    our state will be updated to 1 , instead of 5 
+
+    Whenever we have such a scenario , that update state based on previous state 
+    make sure we pass a function as argument , as below 
+
+    increment(){
+        this.setState((prevState)=>{
+            count:prevState.count+1
+        })
+    }
+
+------------------------------------------------------------------------------
+recap of above 3 cases:
+
+1.always use the setState to update the state 
+
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+    console.log(this.state.count);
+  }
+
+2.whenever there is a dependency on state , that task pass as 2nd parameter in callback function 
+  increment() {
+    this.setState({ count: this.state.count + 1 }, () =>
+      console.log('callback', this.state.count)
+    );
+    console.log(this.state.count);
+  }
+
+3.when we have dependency on previous state , then pass it as a callback function 
+
+    increment() {
+    this.setState(
+      (prevState) => ({
+        count: prevState.count + 1,
+      }),
+      () => console.log('callback', this.state.count)
+    );
+    console.log(this.state.count);
+  }
+
+4.if state is dependent on props we can also use them 
+
+    increment(){
+        this.setState((prevState,props)=>({
+            count:prevState.count+props.addValue
+        }))
+    }
+
+------------------------------------------------------------------------------
+import React from 'react';
+
+class Counter extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+  }
+
+  increment() {
+    this.setState(
+      (prevState) => ({
+        count: prevState.count + 1,
+      }),
+      () => console.log('callback', this.state.count)
+    );
+    console.log(this.state.count);
+  }
+
+  incrementFive() {
+    this.increment();
+    this.increment();
+    this.increment();
+  }
+  render() {
+    return (
+      <>
+        <h1>Counter - {this.state.count}</h1>
+        <button onClick={() => this.incrementFive()}>Increment</button>
+        <button onClick={() => this.decrement()}>Decrement</button>
+        <button onClick={() => this.reset()}>Reset</button>
+      </>
+    );
+  }
+}
+
+export default Counter;
+
+
+
+
+------------------------------------------------------------------------------
+Summary:
+
+Always make use of setState and never modify the state directly 
+
+Code has to be executed after the state has been updated ? Place that code in the callback 
+function which is the second argument to the setState method 
+
+When you have to update state based on the previous state value , pass in a function 
+as an argument instead of the regular object 

@@ -1,0 +1,40 @@
+What is React?
+React is Open Source Library for building user interfaces 
+
+Not a framework
+Focus on UI 
+
+React has rich ecosystem , that integrates with other libraries that helps in building web applications 
+
+React is created and maintained by Facebook 
+Morethan 100k stars on Github
+Huge Community
+in demand skillset 
+
+========================================================================
+React has a Component Based Architecture 
+
+A traditional website can be broken down into Header , sidenav , mainContent , Footer 
+
+
+React helps in developing Reusable Code 
+========================================================================
+React is declarative 
+
+Tell what you want and React will build the actual UI 
+React will handle efficiently updating and rendering of the components 
+DOM updates are handled gracefully in React 
+========================================================================
+More on why React?
+
+Seamlessly integrate react into any of your applications
+Might be it is a portion or a complete page or even an entire application 
+We can learn React native for mobile application further 
+
+========================================================================
+Prereq:
+HTML , CSS , JS fundamentals 
+ES6 
+JS - this keyword , filter ,map , reduce
+ES6 - let , const , arrow functions , template literals , default parameters 
+      object literals , rest and spread operators and destructuring assignment 

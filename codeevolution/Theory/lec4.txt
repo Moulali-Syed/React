@@ -1,0 +1,38 @@
+Components:
+
+In react component represents part of the website
+
+Header component
+
+Sidenav component
+
+main component
+
+footer component 
+
+All components come together to make our entire application and also they are reusable 
+
+
+=======================================================================
+
+Component Types:
+
+Functional Components and Class Components 
+
+=======================================================================
+
+
+function Welcome(props){
+    return <h1>Hello , {props.name}</h1>
+}
+
+
+=======================================================================
+Class extending Component Class 
+Render method returning HTML 
+
+class Welcome extends React.Component{
+    render(){
+        return <h1>Hello , {this.props.name}</h1>
+    }
+}

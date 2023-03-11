@@ -1,0 +1,80 @@
+Functional Components:
+
+Accepts Properties  -----> Javascript Functions  ----->  HTML (JSX) 
+    (props)
+
+
+Lets create a folder , name it Components , inside the src folder 
+
+
+Then create a component , Greet
+
+import React from 'react';
+
+function Greet(){
+    return <h1>Hello Good Morning</h1>
+}
+
+export default Greet;
+
+
+--------------
+
+Then import Greet component inside App.js and display it
+
+import Greet from './Components/Greet';
+
+function App(){
+    return <Greet/>
+}
+
+export default App;
+
+------------
+
+It is a convention to use arrow Functions
+
+import React from 'react';
+
+const Greet = () => {
+  return <h1>Hello Good Morning</h1>;
+};
+
+export default Greet;
+
+
+-----------
+
+we can import a default export with any name 
+
+
+say we 
+export default Greet;
+
+
+we can import it using any name 
+
+import G from './Components/Greet';
+
+-----------
+
+
+
+Named Export , and its way of importing 
+
+
+import React from 'react';
+
+export const Greet = () => {
+  return <h1>Hello Good Morning</h1>;
+};
+
+
+import './App.css';
+import { Greet } from './Components/Greet';
+
+function App() {
+  return <Greet />;
+}
+
+export default App;

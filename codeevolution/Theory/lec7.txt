@@ -1,0 +1,3 @@
+Hooks Update:
+
+Hooks make the state maintainable inside a functional component 
