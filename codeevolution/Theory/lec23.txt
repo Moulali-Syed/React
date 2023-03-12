@@ -1,0 +1,154 @@
+Mounting Life cycle Methods:
+
+this is the phase when instance of component is created and inserted into DOM 
+
+1.constructor(props)
+        A special function that will get called whenever a new component is created 
+        Use:
+            It is  for initializing state
+            Also for binding the event handlers
+        Dont Do's:
+            Donot cause side effects Ex: HTTP Requests, AJAX calls
+
+        Do's:
+            we have to call the super method --> super(props)
+            we can directly overwrite this.state only in constructor , in all other places we must use this.setState()
+
+2.static getDerivedStateFromProps(props,state)  --> react docs classify this as a rarely used lifecycle method 
+        This is used when the state of the component depends on changes in props over time 
+        We can set the state , because it is a static method , we cannot access this keyword inside it
+        Donot cause side effects Ex: HTTP Requests, AJAX calls 
+
+3.render()
+        It is the only required method in a class component , that is , it is compulsory to have in class component 
+        In render method we read props and state and return the JSX 
+        render function is a pure funtion , for a given state and props it must always return same UI 
+        Donot change state or interact with DOM or make ajax calls 
+        After this , children components life cycle methods are also executed
+
+
+4.componentDidMount()
+        It will be called only once
+        Invoked immediately after a component and all its children components have been 
+        rendered to the DOM 
+        This is a perfect place to cause side effects Ex:interact with DOM or perform any AJAX calls 
+        to load data 
+
+=================================================================
+Lets create a class component and see the method execution order
+
+import React, { Component } from 'react';
+
+class LifeCycleA extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: 'Apple',
+    };
+
+    console.log('LifeCycle A Constructor');
+  }
+  static getDerivedStateFromProps(props, state) {
+    //this has access to props and state , and has to return new state or null
+    console.log('LifeCycleA getDerivedStateFromProps');
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('LifeCycleA componentDidMount');
+  }
+  render() {
+    console.log('LifeCycleA render');
+    return <div>LifeCycleA</div>;
+  }
+}
+
+export default LifeCycleA;
+
+
+LifeCycle A Constructor
+LifeCycleA getDerivedStateFromProps
+LifeCycleA render
+LifeCycleA componentDidMount
+
+=================================================================
+Lets see the execution order , if we have a child component:
+
+import React, { Component } from 'react';
+
+class LifeCycleB extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: 'Apple',
+    };
+
+    console.log('LifeCycle B Constructor');
+  }
+  static getDerivedStateFromProps(props, state) {
+    //this has access to props and state , and has to return new state or null
+    console.log('LifeCycleB getDerivedStateFromProps');
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('LifeCycleB componentDidMount');
+  }
+  render() {
+    console.log('LifeCycleB render');
+    return <div>LifeCycleB</div>;
+  }
+}
+
+export default LifeCycleB;
+
+import React, { Component } from 'react';
+import LifeCycleB from './LifeCycleB';
+
+class LifeCycleA extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: 'Apple',
+    };
+
+    console.log('LifeCycle A Constructor');
+  }
+  static getDerivedStateFromProps(props, state) {
+    //this has access to props and state , and has to return new state or null
+    console.log('LifeCycleA getDerivedStateFromProps');
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('LifeCycleA componentDidMount');
+  }
+  render() {
+    console.log('LifeCycleA render');
+    return (
+      <>
+        <div>LifeCycleA</div>
+        <LifeCycleB />
+      </>
+    );
+  }
+}
+
+export default LifeCycleA;
+
+
+
+LifeCycle A Constructor
+LifeCycleA getDerivedStateFromProps
+LifeCycleA render
+LifeCycle B Constructor
+LifeCycleB getDerivedStateFromProps
+LifeCycleB render
+LifeCycleB componentDidMount
+LifeCycleA componentDidMount
+
+
+=================================================================

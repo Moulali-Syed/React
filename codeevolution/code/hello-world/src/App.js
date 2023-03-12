@@ -16,14 +16,18 @@ import './App.css';
 // import StyleSheet from './Components/StyleSheet';
 // import InlineStyle from './Components/InlineStyle';
 
-import './Components/appStyle.css';
-import styles from './Components/appStyle.module.css';
+// import './Components/appStyle.css';
+// import styles from './Components/appStyle.module.css';
+// import Form from './Components/Form';
+import LifeCycleA from './Components/LifeCycleA';
 
 function App() {
   return (
     <>
-      <h1 className="error">Heading1</h1>
-      <h2 className={styles.success}>Heading2</h2>
+      <LifeCycleA />
+      {/* <Form /> */}
+      {/* <h1 className="error">Heading1</h1>
+      <h2 className={styles.success}>Heading2</h2> */}
       {/* <InlineStyle /> */}
       {/* <StyleSheet primary={true} /> */}
       {/* <NameList2 /> */}

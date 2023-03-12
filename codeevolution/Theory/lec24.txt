@@ -1,0 +1,158 @@
+Component Updating LifeCycle Methods:
+
+1.static getDeriveStateFromProps(state,props)
+        Method is called every time a Component is re-rendered 
+        This method is used when state is dependent on props of Component
+        We should not cause any side effects Ex:HTTP Requests
+        this method is one of rarely used Methods in Updating phase 
+
+2.shouldComponentUpdate(nextProps,nextState)
+        This method dictates if the component should re-render or not 
+        THis method is for Performance Optimization
+        We should avoid making side effects ex: HTTP Requests or calling the setState method 
+        This is also a rarely used method 
+
+3.render()
+        Only required Method
+        Read props and state and return JSX
+        Donot change the state or interact with DOM or make AJAX calls 
+
+4.getSnapshotBeforeUpdate(prevProps,prevState)
+        This method accepts prevProps and prevState as parameters 
+        This is called right before the changes from the virtual DOM are to be reflected in the DOM 
+        THis method is used to capture some information from the DOM 
+        This is classsified as a rarely used method
+        Method will either return null or a value , returned value will be passed as the third parameter 
+        to the next method that is componentDidUpdate
+
+5.componentDidUpdate(prevProps,prevState,snapShot)
+        called after the render is finished in the re-render cycles
+        We can make side effects , that AJAX calls , but compare previous props with new props then only make
+        ajax calls,if u r not comparing then u might end up making unwanted AJAX calls which is not a good idea 
+
+
+=================================================================================
+
+import React, { Component } from 'react';
+import LifeCycleB from './LifeCycleB';
+
+class LifeCycleA extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: 'Apple',
+    };
+
+    console.log('LifeCycle A Constructor');
+  }
+  static getDerivedStateFromProps(props, state) {
+    //this has access to props and state , and has to return new state or null
+    console.log('LifeCycleA getDerivedStateFromProps');
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('LifeCycleA componentDidMount');
+  }
+
+  shouldComponentUpdate() {
+    console.log('LifeCycleA shouldcomponentUpdate');
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('LifeCycleA getSnapshotBeforeUpdate');
+    return null;
+  }
+
+  componentDidUpdate() {
+    console.log('LifeCycleA componentDidUpdate');
+  }
+
+  changeState = () => {
+    this.setState({ name: 'CodeEvolution' });
+  };
+  render() {
+    console.log('LifeCycleA render');
+    return (
+      <>
+        <div>LifeCycleA</div>
+        <button onClick={this.changeState}>Change State</button>
+        <LifeCycleB />
+      </>
+    );
+  }
+}
+
+export default LifeCycleA;
+
+
+---------
+
+import React, { Component } from 'react';
+
+class LifeCycleB extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: 'Apple',
+    };
+
+    console.log('LifeCycle B Constructor');
+  }
+  static getDerivedStateFromProps(props, state) {
+    //this has access to props and state , and has to return new state or null
+    console.log('LifeCycleB getDerivedStateFromProps');
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('LifeCycleB componentDidMount');
+  }
+  shouldComponentUpdate() {
+    console.log('LifeCycleA shouldcomponentUpdate');
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('LifeCycleA getSnapshotBeforeUpdate');
+    return null;
+  }
+
+  componentDidUpdate() {
+    console.log('LifeCycleA componentDidUpdate');
+  }
+
+  render() {
+    console.log('LifeCycleB render');
+    return <div>LifeCycleB</div>;
+  }
+}
+
+export default LifeCycleB;
+
+=================================================================================
+
+Unmounting Phase Method:
+
+componentWillUnmount()
+        This method is invoked immediately before a component is unmounted and destroyed
+        Cancelling any network requests , removing event handlers , cancelling any subscriptions and 
+        also invalidating timers
+
+        Donot call the setState method
+
+=================================================================================
+Error Handling  Phase methods:
+
+1.static getDerivedStateFromError(error)
+
+
+
+2.componentDidCatch(error,info)
+
+
+These 2 methods are called when there is an error either during rendering , in a lifecycle 
+method or in the constructor of any child component 
