@@ -1,0 +1,118 @@
+Conditional Rendering:
+
+we have 4 different ways 
+if else
+Element variables
+Terenary conditional operator 
+Short circuit operator 
+
+========================================================================================
+import React from 'react';
+
+class UserGreeting extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: true,
+    };
+  }
+
+  render() {
+    if (this.state.isLoggedIn) {
+      return <h1>Welcome Apple</h1>;
+    } else {
+      return <h1>Welcome Guest</h1>;
+    }
+  }
+}
+
+export default UserGreeting;
+
+
+keep in mind that adding if else inside JSX that is inside return will not work
+that is why we have if and else outside , return inside it 
+========================================================================================
+2.Element Variables 
+
+
+import React from 'react';
+
+class UserGreeting extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: true,
+    };
+  }
+
+  render() {
+    let message;
+    if (this.state.isLoggedIn) {
+      message = <div>Welcome Apple</div>;
+    } else {
+      message = <div>Welcome Guest</div>;
+    }
+
+    return <h1>{message}</h1>;
+  }
+}
+
+export default UserGreeting;
+
+
+
+
+========================================================================================
+3.Terenary operator , can be used inside JSX 
+
+
+import React from 'react';
+
+class UserGreeting extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: true,
+    };
+  }
+
+  render() {
+    return this.state.isLoggedIn ? (
+      <div>Welcome Apple</div>
+    ) : (
+      <div>Welcome Guest</div>
+    );
+  }
+}
+
+export default UserGreeting;
+
+========================================================================================
+4.Short Circuit Operator:
+
+import React from 'react';
+
+class UserGreeting extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: true,
+    };
+  }
+
+  render() {
+    return this.state.isLoggedIn && <div>Welcome Apple</div>;
+  }
+}
+
+export default UserGreeting;
+
+
+
+========================================================================================
+
+

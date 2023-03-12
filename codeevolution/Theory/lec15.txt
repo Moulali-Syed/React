@@ -1,0 +1,100 @@
+Methods as Props:
+
+We have seen earlier parent component can pass down data to children component as props 
+
+Now what is the child component wants to communicate with parent component 
+
+child component calling parent component method , lets try to achieve this, can be achieved using props 
+
+using below code , we can call the parent class method in child component , by passing it as props 
+
+
+import React from 'react';
+import ChildComponent from './ChildComponent';
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parentName: 'Parent',
+    };
+
+    this.greetParent = this.greetParent.bind(this);
+  }
+
+  greetParent() {
+    alert(`Hello ${this.state.parentName}`);
+  }
+
+  render() {
+    return (
+      <div>
+        <ChildComponent greetHandler={this.greetParent} />
+      </div>
+    );
+  }
+}
+export default ParentComponent;
+
+
+import React from 'react';
+
+const ChildComponent = (props) => {
+  return (
+    <div>
+      <button onClick={props.greetHandler}>Greet Parent</button>
+    </div>
+  );
+};
+
+export default ChildComponent;
+
+
+===========================================================================================
+
+in parent component - define the method 
+on child component - pass the method as prop 
+in child component - access the method using props object 
+===========================================================================================
+
+
+import React from 'react';
+import ChildComponent from './ChildComponent';
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parentName: 'Parent',
+    };
+
+    this.greetParent = this.greetParent.bind(this);
+  }
+
+  greetParent(childName) {
+    alert(`Hello ${this.state.parentName} from  ${childName}`);
+  }
+
+  render() {
+    return (
+      <div>
+        <ChildComponent greetHandler={this.greetParent} />
+      </div>
+    );
+  }
+}
+export default ParentComponent;
+
+
+import React from 'react';
+
+const ChildComponent = (props) => {
+  return (
+    <div>
+      <button onClick={() => props.greetHandler('child')}>Greet Parent</button>
+    </div>
+  );
+};
+
+export default ChildComponent;
+

@@ -6,13 +6,20 @@ import './App.css';
 // import Message from './Components/Message';
 // import Counter from './Components/Counter';
 
-import FunctionClick from './Components/FunctionClick';
-import ClassClick from './Components/ClassClick';
+// import FunctionClick from './Components/FunctionClick';
+// import ClassClick from './Components/ClassClick';
+
+// import EventBind from './Components/EventBind';
+// import ParentComponent from './Components/ParentComponent';
+import UserGreeting from './Components/UserGreeting';
 function App() {
   return (
     <>
-      <FunctionClick />
-      <ClassClick />
+      <UserGreeting />
+      {/* <ParentComponent /> */}
+      {/* <EventBind /> */}
+      {/* <FunctionClick />
+      <ClassClick /> */}
       {/* <Counter /> */}
       {/* <Message /> */}
       {/* <Greet name="Apple" heroName="Fruit" />;

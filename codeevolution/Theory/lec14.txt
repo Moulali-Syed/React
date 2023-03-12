@@ -1,0 +1,139 @@
+Binding Event Handlers:
+
+on click on button , we want to change content in app state
+
+There are 4 ways of event binding:
+
+1.bind in render method
+2.arrow function in render method 
+3.binding in class constructor
+4.class property as arrow function 
+
+
+================================================================================================================
+1.bind in render method:
+
+import React from 'react';
+
+class EventBind extends React.Component{
+
+    constructor(props){
+        super(props);   
+        this.state = {
+            message:"hi there"
+        }
+    }
+
+    clickHandler(){
+        this.setState({
+            message:"Welcome to Event Binding"
+        })
+    }
+
+    render(){
+        return (<div>
+        <h1>{this.state.message}</h1>
+        <button onClick={this.clickHandler.bind(this)}>Click</button>
+        </div>)
+    }
+}
+
+export default EventBind;
+
+================================================================================================================
+2. arrow function in render method 
+
+
+import React from 'react';
+
+class EventBind extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            message:"Hi There";
+        }
+    }
+
+    clickHandler(){
+        this.setState({message:"Welcome To Event Handling"});
+    }
+
+    render(){
+        return (
+            <div>
+                    <h1>{this.state.message}</h1>
+                    <button onClick={()=>this.clickHandler()}>Click</button>
+            </div>
+        )
+    }
+}
+
+export default EventBind;
+
+================================================================================================================
+3.bind in class constructor 
+
+import React from 'react';
+
+class EventBind extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: 'Hi There',
+    };
+
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler() {
+    this.setState({ message: 'Welcome to Event Handling' });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={this.clickHandler}>Click</button>
+      </div>
+    );
+  }
+}
+
+export default EventBind;
+
+
+================================================================================================================
+4.class property as arrow function
+
+
+import React from 'react';
+
+class EventBind extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: 'Hello There',
+    };
+  }
+
+  clickHandler = () => {
+    this.setState({ message: 'Welcome to Event Handling' });
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={this.clickHandler}>Click</button>
+      </div>
+    );
+  }
+}
+
+export default EventBind;
+
+
+
+
+================================================================================================================
