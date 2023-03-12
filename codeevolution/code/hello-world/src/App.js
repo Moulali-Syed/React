@@ -11,11 +11,14 @@ import './App.css';
 
 // import EventBind from './Components/EventBind';
 // import ParentComponent from './Components/ParentComponent';
-import UserGreeting from './Components/UserGreeting';
+// import UserGreeting from './Components/UserGreeting';
+import NameList from './Components/NameList';
+
 function App() {
   return (
     <>
-      <UserGreeting />
+      <NameList />
+      {/* <UserGreeting /> */}
       {/* <ParentComponent /> */}
       {/* <EventBind /> */}
       {/* <FunctionClick />

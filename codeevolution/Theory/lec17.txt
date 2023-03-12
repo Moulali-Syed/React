@@ -1,0 +1,162 @@
+List Rendering:
+
+
+It is common to display a list of items , products 
+
+
+import React from 'react';
+
+const NameList = () => {
+  const names = ['Bruce', 'Diana', 'Grace'];
+  return (
+    <>
+      {names.map((name) => (
+        <h1>{name}</h1>
+      ))}
+    </>
+  );
+};
+
+export default NameList;
+
+
+=========================================================================
+we can refactor to more concise 
+
+
+import React from 'react';
+
+const NameList = () => {
+  const names = ['Bruce', 'Diana', 'Grace'];
+  const nameList = names.map((name) => <h1>{name}</h1>);
+  return <>{nameList}</>;
+};
+
+export default NameList;
+
+=========================================================================
+
+import React from 'react';
+
+const NameList = () => {
+  const persons = [
+    {
+      id: 1,
+      name: 'Apple',
+      city: 'Shimla',
+      age: 1,
+    },
+    { id: 2, name: 'Grapes', city: 'France', age: 3 },
+    { id: 3, name: 'Mango', city: 'Guntur', age: 4 },
+  ];
+
+  return (
+    <>
+      {persons.map((person) => {
+        return (
+          <>
+            <h1>{person.name}</h1>
+            <h2>{person.city}</h2>
+            <h3>{person.age}</h3>
+          </>
+        );
+      })}
+    </>
+  );
+};
+
+export default NameList;
+=========================================================================
+
+Refactor JSX in different file 
+
+
+import React from 'react';
+import Person from './Person';
+const NameList = () => {
+  const persons = [
+    {
+      id: 1,
+      name: 'Apple',
+      city: 'Shimla',
+      age: 1,
+    },
+    { id: 2, name: 'Grapes', city: 'France', age: 3 },
+    { id: 3, name: 'Mango', city: 'Guntur', age: 4 },
+  ];
+
+  return (
+    <>
+      <Person persons={persons} />
+    </>
+  );
+};
+
+export default NameList;
+
+
+------
+
+
+import React from 'react';
+
+const Person = (props) => {
+  const persons = props.persons;
+  return (
+    <>
+      {persons.map((person) => {
+        return (
+          <>
+            <h1>{person.name}</h1>
+            <h2>{person.city}</h2>
+            <h3>{person.age}</h3>
+          </>
+        );
+      })}
+    </>
+  );
+};
+
+export default Person;
+
+
+======================================================================
+below is more prcise code , each component has its own functionality
+
+
+import React from 'react';
+import Person from './Person';
+const NameList = () => {
+  const persons = [
+    {
+      id: 1,
+      name: 'Apple',
+      city: 'Shimla',
+      age: 1,
+    },
+    { id: 2, name: 'Grapes', city: 'France', age: 3 },
+    { id: 3, name: 'Mango', city: 'Guntur', age: 4 },
+  ];
+
+  const personList = persons.map((person) => <Person person={person} />);
+  return <>{personList}</>;
+};
+
+export default NameList;
+
+
+import React from 'react';
+
+const Person = (props) => {
+  const person = props.person;
+  return (
+    <>
+      <h1>
+        Iam {person.name} of age {person.age} from city {person.city}
+      </h1>
+    </>
+  );
+};
+
+export default Person;
+
