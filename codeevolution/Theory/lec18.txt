@@ -1,0 +1,47 @@
+Lists and Keys:
+
+If we donot specify , a key for each child  , react will gives us a warning in console 
+Each child in an array or iterator should have a unique "key" prop  
+
+import React from 'react';
+import Person from './Person';
+const NameList = () => {
+  const persons = [
+    {
+      id: 1,
+      name: 'Apple',
+      city: 'Shimla',
+      age: 1,
+    },
+    { id: 2, name: 'Grapes', city: 'France', age: 3 },
+    { id: 3, name: 'Mango', city: 'Guntur', age: 4 },
+  ];
+
+  const personList = persons.map((person) => (
+    <Person key={person.id} person={person} />
+  ));
+  return <>{personList}</>;
+};
+
+export default NameList;
+
+
+============================================================================
+key prop is something that react needs , to render the list efficiently 
+if we try to destructure and use it in child component , we dont see anything displayed 
+in webpage 
+
+instead we get a warning , key is not a prop , Trying to access it will result in 
+undefined being returned .if you need to access the same value within the child component 
+you should pass it as a different prop 
+
+key - prop is reserved , donot use it to render data 
+
+
+key - plays a crucial role in handling the UI updates efficiently
+
+
+A key is a special string attribute you need to include when creating lists of elements 
+Keys give the elements a stable identity 
+Keys help React identify which items have changed /added /removed
+Help in efficient update of the user interfaces 

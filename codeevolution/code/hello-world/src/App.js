@@ -12,12 +12,21 @@ import './App.css';
 // import EventBind from './Components/EventBind';
 // import ParentComponent from './Components/ParentComponent';
 // import UserGreeting from './Components/UserGreeting';
-import NameList from './Components/NameList';
+// import NameList2 from './Components/NameList2';
+// import StyleSheet from './Components/StyleSheet';
+// import InlineStyle from './Components/InlineStyle';
+
+import './Components/appStyle.css';
+import styles from './Components/appStyle.module.css';
 
 function App() {
   return (
     <>
-      <NameList />
+      <h1 className="error">Heading1</h1>
+      <h2 className={styles.success}>Heading2</h2>
+      {/* <InlineStyle /> */}
+      {/* <StyleSheet primary={true} /> */}
+      {/* <NameList2 /> */}
       {/* <UserGreeting /> */}
       {/* <ParentComponent /> */}
       {/* <EventBind /> */}

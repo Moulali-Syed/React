@@ -1,0 +1,137 @@
+Styling and CSS Basics:
+
+
+Styling React Components:
+1.CSS stylesheets
+2.Inline Styling
+3.CSS Modules
+4.CSS in JS Libraries 
+
+===============================================================
+1.CSS stylesheets:
+
+import React from 'react';
+import './myStyles.css';
+
+const StyleSheet = () => {
+  return (
+    <div>
+      <h1 className="primary">StyleSheet</h1>
+    </div>
+  );
+};
+
+export default StyleSheet;
+
+
+.primary {
+  color: orange;
+}
+
+
+----------------------------------------------------------
+We can also conditionally render the styles using props
+
+In App.js we are passing props 
+      <StyleSheet primary={false} />
+
+
+import React from 'react';
+import './myStyles.css';
+
+const StyleSheet = (props) => {
+  let className = props.primary ? 'primary' : '';
+  return (
+    <div>
+      <h1 className={className}>StyleSheet</h1>
+    </div>
+  );
+};
+
+export default StyleSheet;
+
+===============================================================
+2.Multiple classes:
+
+
+import React from 'react';
+import './myStyles.css';
+
+const StyleSheet = (props) => {
+  let className = props.primary ? 'primary' : '';
+  return (
+    <div>
+      <h1 className={`${className} font-xl`}>StyleSheet</h1>
+    </div>
+  );
+};
+
+export default StyleSheet;
+
+
+.primary {
+  color: orange;
+}
+
+.font-xl {
+  font-size: 72px;
+}
+
+
+
+
+===============================================================
+3.Inline Styling:
+
+import React from 'react';
+
+const heading = {
+  fontSize: '72px',
+  color: 'blue',
+};
+const InlineStyle = () => {
+  return <div style={heading}>Inline</div>;
+};
+
+export default InlineStyle;
+
+===============================================================
+4.CSS Modules 
+
+file name suffix must  be  .module.css  
+
+It is compulsory , to have the suffix as .module.css 
+
+so created a appStyle.module.css 
+
+In App.js , import the stylesheets - appStyle.css and appStyle.module.css 
+
+appStyle.css
+
+.error {
+  color: red;
+}
+
+
+appStyle.module.css 
+
+.success {
+  color: green;
+}
+
+
+import './Components/appStyle.css';
+import  styles from './Components/appStyle.module.css'; 
+ //*********notice that there is a difference how we import
+styles from  a module.css file  **************
+
+
+//***** Now to access the class *****
+
+      <h1 className="error">Heading1</h1>
+      <h2 className={styles.success}>Heading2</h2>
+
+
+using css modules , we cannot accidentally use a class that is made for another component 
+as we are importing it by giving a name 
+===============================================================

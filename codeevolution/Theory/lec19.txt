@@ -1,0 +1,48 @@
+Index as key Anti-Pattern :
+
+
+import React from 'react';
+import Person2 from './Person2';
+
+const NameList2 = () => {
+  const names = ['Diana', 'Clark', 'Bruce'];
+
+  const nameList = names.map((name, index) => (
+    <Person2 key={index} name={name} />
+  ));
+  return <div>{nameList}</div>;
+};
+
+export default NameList2;
+
+
+------------
+
+import React from 'react';
+
+const Person2 = (props) => {
+  return (
+    <div>
+      <h1>{props.name}</h1>
+    </div>
+  );
+};
+
+export default Person2;
+
+
+
+================================================================================
+We should not be preferring to use index as key , this might result in 
+serious UI issues 
+
+
+
+When to use index as key?
+1.The items in your list donot have a unique id
+2.The list is a static list and will not change
+3.The list will never be reordered or filtered 
+
+
+Always to try to get an unique value from existing values or use any npm package 
+to generate a unique key 

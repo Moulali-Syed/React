@@ -12,7 +12,9 @@ const NameList = () => {
     { id: 3, name: 'Mango', city: 'Guntur', age: 4 },
   ];
 
-  const personList = persons.map((person) => <Person person={person} />);
+  const personList = persons.map((person) => (
+    <Person key={person.id} person={person} />
+  ));
   return <>{personList}</>;
 };
 
