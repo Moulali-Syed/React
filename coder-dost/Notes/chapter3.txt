@@ -1,0 +1,85 @@
+Conditional Rendering and map :
+
+using if else:
+
+import './Video.css';
+const Video = ({ title, views, channel, time }) => {
+  let bg = 'dark';
+  let verified = true;
+  let channelJSX;
+  if (verified) {
+    channelJSX = <div className="channel">{channel} ✅</div>;
+  } else {
+    channelJSX = <div className="channel">{channel} </div>;
+  }
+
+  return (
+    <>
+      <div className="container">
+        <img
+          src="https://cdn.pixabay.com/photo/2023/03/11/10/42/plants-7844173_960_720.jpg"
+          alt="beautiful"
+        />
+        {/* <div className="dark">React Js Tutorial</div> */}
+        <div className={bg}>{title} </div>
+        <div className="cont">
+          <div className="channel">{channelJSX}</div>
+          <div className="views">
+            {views}
+            <span>.</span>
+            {time}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Video;
+
+
+
+using terenary operator:
+
+            {verified ? (
+              <div className="channel">{channel} ✅</div>
+            ) : (
+              <div className="channel">{channel} </div>
+            )}
+
+            <div className="channel">
+              {channel} {verified ? '✅' : null}
+            </div>
+
+using short circuiting:
+
+            <div className="channel">
+              {channel} {verified && '✅'}
+            </div>
+
+======================================================================================
+map:
+
+function App(){
+    let videos = [
+        {
+                id:1,
+                title:"react js"
+        },
+        {
+                id:2,
+                title:"node js"
+        },
+        {
+                id:3,
+                title:"express js"
+        }
+    ]
+
+    return (<>
+               { videos.map(video=><h1>{video.title}</h1>)}
+    
+            </>);
+}
+
+

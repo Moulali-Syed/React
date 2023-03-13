@@ -1,0 +1,78 @@
+React is mainly for single page applications (SPA)
+
+React can be used for multi page applications
+
+React is an UI Library 
+
+React is all about components 
+
+With Components we have     
+        1.Easy Structure
+        2.Re-Use 
+
+
+Install Google chrome browser , install node and npm 
+Look for React Docs Beta 
+
+create a react app -->  npx create-react-app my-app 
+
+
+Install React Developer Tools Extension in chrome
+======================================================================================
+Lets understand 
+
+public folder - index.html (this is our single web page) , remove rest of the files 
+
+Our react app will have entry point in index.js
+
+
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+we are referencing our html --> <div id="root"></div> element 
+======================================================================================
+
+React Developer Tools - Components tab in the chrome dev tools 
+
+import './App.css';
+
+function App() {
+  let name = 'React APP';
+  return (
+    <div className="App">
+      Hello World
+      <Demo />
+      {name}
+    </div>
+  );
+}
+
+const Demo = () => {
+  return <div>Demo</div>;
+};
+
+export default App;
+
+======================================================================================
+Chapter1 - assignments:
+
+1.how to get node_modules if got deleted  ---   npm install 
+2.why console.logs are getting printed 2 times?
+    It is because of react StrictMode 
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+
+3.Set up react project with vite 
+

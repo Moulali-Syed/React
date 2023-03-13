@@ -1,0 +1,195 @@
+Components:
+
+These are functions that returns UI 
+
+
+======================================================================================
+Describing the UI :
+
+component name must be starting with capital letter 
+
+const Video = () => {
+  return (
+    <div>
+      <img
+        src="https://cdn.pixabay.com/photo/2023/03/11/10/42/plants-7844173_960_720.jpg"
+        alt="beautiful"
+      />
+      <div>React Js Tutorial</div>
+    </div>
+  );
+};
+
+export default Video;
+
+======================================================================================
+
+Markup with JSX :
+
+inside JSX we can combine html and javascript code 
+
+rules of JSX:
+1.all JSX objects , should be enclosed in  a single tag - Fragment <></>
+
+2.css class attriute ----> className (camelCase)
+            <div className="dark"></div>
+
+            or we can use expression
+
+            let bg = "dark";
+            <div className={bg}></div>
+
+3.<h1 style={backgroundColor:'red'}></h1>
+
+
+4.variables - {varName}
+
+5.for --> htmlFor 
+
+
+
+example:
+
+import './Video.css';
+const Video = () => {
+  let bg = 'dark';
+  return (
+    <div>
+      <img
+        src="https://cdn.pixabay.com/photo/2023/03/11/10/42/plants-7844173_960_720.jpg"
+        alt="beautiful"
+      />
+      {/* <div className="dark">React Js Tutorial</div> */}
+      <div className={bg}>React Js Tutorial</div>
+    </div>
+  );
+};
+
+export default Video;
+
+
+<div style={{backgroundColor:'red'}}></div>
+
+==============================================================================
+we can also use html  to  JSX converter  
+
+
+==============================================================================
+props:
+
+
+
+import './Video.css';
+const Video = (props) => {
+  let bg = 'dark';
+  return (
+    <div>
+      <img
+        src="https://cdn.pixabay.com/photo/2023/03/11/10/42/plants-7844173_960_720.jpg"
+        alt="beautiful"
+      />
+      {/* <div className="dark">React Js Tutorial</div> */}
+      <div className={bg}>{props.title} Tutorial</div>
+    </div>
+  );
+};
+
+export default Video;
+
+-----
+
+import Video from './components/Video';
+
+const App = () => {
+  return (
+    <>
+      <div>Hello</div>
+      <Video title="React Js" />
+      <Video title="Node Js" />
+    </>
+  );
+};
+
+export default App;
+
+==============================================================================
+props , destructuring way 
+
+
+import './Video.css';
+const Video = ({ title }) => {
+  let bg = 'dark';
+  return (
+    <div>
+      <img
+        src="https://cdn.pixabay.com/photo/2023/03/11/10/42/plants-7844173_960_720.jpg"
+        alt="beautiful"
+      />
+      {/* <div className="dark">React Js Tutorial</div> */}
+      <div className={bg}>{title} Tutorial</div>
+    </div>
+  );
+};
+
+export default Video;
+
+==============================================================================
+props are read only 
+
+==============================================================================
+import './Video.css';
+const Video = ({ title, views, channel, time }) => {
+  let bg = 'dark';
+  return (
+    <>
+      <div className="container">
+        <img
+          src="https://cdn.pixabay.com/photo/2023/03/11/10/42/plants-7844173_960_720.jpg"
+          alt="beautiful"
+        />
+        {/* <div className="dark">React Js Tutorial</div> */}
+        <div className={bg}>{title} </div>
+        <div className="cont">
+          <div className="channel">{channel}</div>
+          <div className="views">
+            {views}
+            <span>.</span>
+            {time}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Video;
+
+
+==============================================================================
+Use as Components
+Fragment
+Components must be closed - <Component name="x" age={1}/>
+
+<Component style={{backgroundColor:'red'}}/>
+
+props 
+
+
+while destructuring props we can have some default values 
+
+we can use spread operator to send props 
+
+function App(){
+
+    let obj = {
+        channel:"Coder dost",
+        views:"1000",
+        time:"1 year"
+    }
+
+    return (<>
+            <div>
+                <Video {...obj}/>
+            </div>
+            </>);
+}
