@@ -1,4 +1,182 @@
+Events:
+
+click 
+mouseover
+mouseout
+
+keydown
+keyup
+keypress
+
 
 
 
 ======================================================================================
+import React from 'react';
+import './PlayButton.css';
+const PlayButton = () => {
+  return <button onClick={() => console.log('play')}>Play</button>;
+};
+
+export default PlayButton;
+
+
+----
+
+import React from 'react';
+import './PlayButton.css';
+const PlayButton = () => {
+  function handleClick() {
+    console.log('play');
+  }
+  return <button onClick={handleClick}>Play</button>;
+};
+
+export default PlayButton;
+
+======================================================================================
+children Prop:
+
+
+import React from 'react';
+import './PlayButton.css';
+const PlayButton = ({ children, message }) => {
+  function handleClick() {
+    console.log({ message });
+  }
+  return <button onClick={handleClick}>{children}</button>;
+};
+
+export default PlayButton;
+
+
+import PlayButton from './components/PlayButton';
+import Video from './components/Video';
+
+const App = () => {
+  return (
+    <>
+      <div>Hello</div>
+      <Video title="React Js" time="2" views="1000" channel="code" />
+      <Video title="Node Js" />
+
+      <PlayButton message="play">Play</PlayButton>
+      <PlayButton message="pause">Pause</PlayButton>
+    </>
+  );
+};
+
+export default App;
+
+======================================================================================
+We can pass functions using props:
+
+import PlayButton from './components/PlayButton';
+import Video from './components/Video';
+
+const App = () => {
+  return (
+    <>
+      <div>Hello</div>
+      <Video title="React Js" time="2" views="1000" channel="code" />
+      <Video title="Node Js" />
+
+      <PlayButton message="play" onClick={() => console.log('Playyyy')}>
+        Play
+      </PlayButton>
+      <PlayButton message="pause" onClick={() => alert('Playyy')}>
+        Pause
+      </PlayButton>
+    </>
+  );
+};
+
+export default App;
+
+
+---
+
+import React from 'react';
+import './PlayButton.css';
+const PlayButton = ({ children, message, onClick }) => {
+  function handleClick() {
+    onClick();
+  }
+  return <button onClick={handleClick}>{children}</button>;
+};
+
+export default PlayButton;
+
+
+
+
+======================================================================================
+2 events on a single button and its conditionally trigger :
+
+
+
+import React from 'react';
+import './PlayButton.css';
+const PlayButton = ({ children, message, onPlay, onPause }) => {
+  let playing = true;
+  function handleClick() {
+    if (playing) {
+      onPause();
+      playing = false;
+    } else {
+      onPlay();
+      playing = true;
+    }
+  }
+  return <button onClick={handleClick}>{children}</button>;
+};
+
+export default PlayButton;
+
+
+----
+import PlayButton from './components/PlayButton';
+import Video from './components/Video';
+
+const App = () => {
+  return (
+    <>
+      <div>Hello</div>
+      <Video title="React Js" time="2" views="1000" channel="code" />
+      <Video title="Node Js" />
+
+      <PlayButton
+        message="play"
+        onPlay={() => console.log('Playyyy')}
+        onPause={() => console.log('Pause')}
+      >
+        Play
+      </PlayButton>
+    </>
+  );
+};
+
+export default App;
+
+======================================================================================
+use event.preventDefault() ,used on forms , not to reload the page
+ e.stopPropagation(); to prevent event bubbling
+
+import React from 'react';
+import './PlayButton.css';
+const PlayButton = ({ children, message, onPlay, onPause }) => {
+  let playing = true;
+  function handleClick(e) {
+    e.stopPropagation();
+    if (playing) {
+      onPause();
+      playing = false;
+    } else {
+      onPlay();
+      playing = true;
+    }
+  }
+  return <button onClick={handleClick}>{children}</button>;
+};
+
+export default PlayButton;
