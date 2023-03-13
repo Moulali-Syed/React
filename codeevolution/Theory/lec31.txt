@@ -1,0 +1,43 @@
+React Portals:
+
+So far we are mounting all our JSX inside a single DOM element root ,every single component in DOM Tree 
+falls under root 
+
+React Portals provide us an ability to come out of this root node
+
+step1:
+In index.html add a div element with id portal-root 
+    <div id="portal-root"></div>
+
+step2:
+create a component - PortalDemo
+
+import React from 'react'
+
+const PortalDemo = () => {
+  return (
+    <div><h1>Portals Demo</h1></div>
+  )
+}
+
+export default PortalDemo
+
+include it in App component
+
+Step3:
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const PortalDemo = () => {
+  return ReactDOM.createPortal(
+    <div>
+      <h1>Portals Demo</h1>
+    </div>,
+    document.getElementById('portal-root')
+  );
+};
+
+export default PortalDemo;
+
+
+ReactDOM.createPortal(Param1 - the JSX we want to render , Param2 - the reference to the element in HTML)

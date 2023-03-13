@@ -1,0 +1,149 @@
+Error Boundary:
+
+
+Error Handling Phase Methods:
+    1.static getDerivedStateFromError(error)
+    2.componentDidCatch(error,info)
+
+
+    Error Boundary :A class component that implements either one or both of the lifecycle methods 
+                    getDerivedStateFromError or componentDidCatch becomes an error boundary 
+
+    The static getDerivedStateFromError  used to render a fallback UI after an error is thrown 
+    and the componentDidCatch method is used to log the error information 
+
+
+
+import React from 'react';
+
+const Hero = ({ heroName }) => {
+  if (heroName === 'Joker') {
+    throw new Error('Not a hero');
+  }
+  return <div>{heroName}</div>;
+};
+
+export default Hero;
+
+
+-------
+
+import React, { Component } from 'react';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasError: false,
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true,
+    };
+  }
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong</h1>;
+    }
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+
+--------
+import ErrorBoundary from './Components/ErrorBoundary';
+import Hero from './Components/Hero';
+
+function App() {
+  return (
+    <>
+      <ErrorBoundary>
+        <Hero heroName="BatMan" />
+        <Hero heroName="superMan" />
+        <Hero heroName="Joker" />
+      </ErrorBoundary>
+    </>
+  );
+}
+
+
+
+------------------------------------------------------------------------------
+Now all the UI is hidden though we have error in only one component 
+consider an ecommerce website with 100's of products , it is not a good idea to hide 
+all the products if we have an error in one product 
+
+Instead wrap each component with ErrorBoundary component
+
+import ErrorBoundary from './Components/ErrorBoundary';
+import Hero from './Components/Hero';
+
+function App() {
+  return (
+    <>
+      <ErrorBoundary>
+        <Hero heroName="BatMan" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Hero heroName="superMan" />
+      </ErrorBoundary>        
+      <ErrorBoundary>
+        <Hero heroName="Joker" />
+      </ErrorBoundary>
+    </>
+  );
+}
+
+
+---------------------------------------------------------------
+If we have any logging mechanism we can include in - componentDidCatch 
+
+
+import React, { Component } from 'react';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasError: false,
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true,
+    };
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error);
+    console.log(info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong</h1>;
+    }
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+
+
+=======================================================================================
+Summary:
+
+Error Boundaries are React components that catch Javascript error in their child 
+component tree , log those errors and display a fallback UI 
+
+
+A class component becomes an Error Boundary by defining either or both of getDerivedStateFromError
+and componentDidCatch lifecycle methods 
+
+The placement of the Error boundary also matters as it controls if the entrie app should have the fallback 
+UI or just the component causing the problem
+
+Provide a way to gracefully handle error in application code 

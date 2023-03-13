@@ -1,0 +1,164 @@
+Why Higher Order components?
+
+To share common functionality between components 
+
+Higher Order Component - HOC 
+A pattern where a function takes a component as an argument and returns a new component 
+
+Typically an HOC adds data or functionality to the component , it will look as below 
+const NewComponent  = higherOrderComponent(originalComponent)
+can also be referred as EnhancedComponent 
+
+
+A basic HOC
+
+import React from 'react';
+
+const UpdatedComponent = (OriginalComponent) => {
+  class NewComponent extends React.Component {
+    render() {
+      return <OriginalComponent name="Apple" />;
+    }
+  }
+
+  return NewComponent;
+};
+
+export default UpdatedComponent;
+
+--------
+
+import React, { Component } from 'react';
+import UpdatedComponent from './withCounter';
+
+class ClickCounter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+
+  incrementCount = () => {
+    this.setState((prevState) => {
+      return { count: prevState.count + 1 };
+    });
+  };
+  render() {
+    const { count } = this.state;
+    return (
+      <div>
+        <button onClick={this.incrementCount}>
+          {this.props.name} Clicked {count} times
+        </button>
+      </div>
+    );
+  }
+}
+
+export default UpdatedComponent(ClickCounter);
+
+---------
+
+import React, { Component } from 'react';
+import UpdatedComponent from './withCounter';
+
+export class HoverCounter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+  incrementCount = () => {
+    this.setState((prevState) => {
+      return { count: prevState.count + 1 };
+    });
+  };
+  render() {
+    const { count } = this.state;
+    return (
+      <div>
+        <h2 onMouseOver={this.incrementCount}>
+          {this.props.name} Hovered {count} times
+        </h2>
+      </div>
+    );
+  }
+}
+
+export default UpdatedComponent(HoverCounter);
+
+====================================================================================
+We want the counter functionality to be shared 
+
+
+lets create a HOC , that helps to share common functionality , we also followed naming convention
+
+import React from 'react';
+
+const withCounter = (WrappedComponent) => {
+  class WithCounter extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        count: 0,
+      };
+    }
+
+    incrementCount = () => {
+      this.setState((prevState) => {
+        return { count: prevState.count + 1 };
+      });
+    };
+    render() {
+      return (
+        <WrappedComponent
+          count={this.state.count}
+          incrementCount={this.incrementCount}
+        />
+      );
+    }
+  }
+
+  return WithCounter;
+};
+
+export default withCounter;
+
+------
+import React, { Component } from 'react';
+import withCounter from './withCounter';
+
+export class HoverCounter extends Component {
+  render() {
+    const { count, incrementCount } = this.props;
+    return (
+      <div>
+        <h2 onMouseOver={incrementCount}>Hovered {count} times</h2>
+      </div>
+    );
+  }
+}
+
+export default withCounter(HoverCounter);
+
+-------
+import React, { Component } from 'react';
+import withCounter from './withCounter';
+
+class ClickCounter extends Component {
+  render() {
+    const { count, incrementCount } = this.props;
+    return (
+      <div>
+        <button onClick={incrementCount}>Clicked {count} times</button>
+      </div>
+    );
+  }
+}
+
+export default withCounter(ClickCounter);

@@ -1,0 +1,38 @@
+Refs:
+
+Refs makes it possible to access the DOM nodes directly within react
+
+
+we want to acheive as soon as page loads we want the focus to be on input element
+
+
+we can do this in 3 simple steps:
+
+
+import React, { Component } from 'react';
+
+class RefsDemo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.inputRef = React.createRef();   //----->1 
+  }
+
+  componentDidMount() {
+    this.inputRef.current.focus();  //---------->3
+    console.log(this.inputRef); //we can see an object with current property
+  }
+  clickHandler = () => {
+    alert(this.inputRef.current.value);
+  };
+  render() {
+    return (
+      <div>
+        <input type="text" ref={this.inputRef} />  //------------> 2
+        <button onClick={this.clickHandler}>Click</button>
+      </div>
+    );
+  }
+}
+
+export default RefsDemo;

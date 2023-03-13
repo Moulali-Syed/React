@@ -1,0 +1,86 @@
+Higher Order Components:
+
+
+Lets first see the need of Higher Order Components
+
+
+lets create a ClickCounter , that displays a button with the number of times clicked on it 
+
+import React, { Component } from 'react';
+
+class ClickCounter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+
+  incrementCount = () => {
+    this.setState((prevState) => {
+      return { count: prevState.count + 1 };
+    });
+  };
+  render() {
+    const { count } = this.state;
+    return (
+      <div>
+        <button onClick={this.incrementCount}>Clicked {count} times</button>
+      </div>
+    );
+  }
+}
+
+export default ClickCounter;
+
+
+Now we need the same count on button but on hover
+
+
+import React, { Component } from 'react';
+
+export class HoverCounter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+  incrementCount = () => {
+    this.setState((prevState) => {
+      return { count: prevState.count + 1 };
+    });
+  };
+  render() {
+    const { count } = this.state;
+    return (
+      <div>
+        <h2 onMouseOver={this.incrementCount}>Hovered {count} times</h2>
+      </div>
+    );
+  }
+}
+
+export default HoverCounter;
+
+
+--------------------
+Now we have realized that the same code is written in both files 
+we should be re using the code , not duplicating it 
+
+We can do this by Lifting the counter logic to parent and pass to child as props 
+
+                    ParentComponent(lift counter logic to parent and pass props)
+                        /   \
+              ClickCounter  HoverCounter          
+
+This above approach will work in our scenario 
+
+But imagine the components are scattered over the DOM Tree , Lifting the state is not a great solution 
+
+
+So there is a need to share the common functionality between components without repeating the code 
+
+That is where we need Higher Order Components 

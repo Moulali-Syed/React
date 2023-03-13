@@ -1,4 +1,15 @@
 import './App.css';
+import ClickCounter from './Components/ClickCounter';
+import HoverCounter from './Components/HoverCounter';
+// import ErrorBoundary from './Components/ErrorBoundary';
+// import Hero from './Components/Hero';
+// import FRParentInput from './Components/FRParentInput';
+// import PortalDemo from './Components/PortalDemo';
+// import FocusInput from './Components/FocusInput';
+// import ParentComp from './Components/ParentComp';
+// import RefsDemo from './Components/RefsDemo';
+// import FragmentDemo from './Components/FragmentDemo';
+// import PureComp from './Components/PureComp';
 // import Greet from './Components/Greet';
 // import GreetClass from './Components/GreetClass';
 // import Hello from './Components/Hello';
@@ -19,12 +30,29 @@ import './App.css';
 // import './Components/appStyle.css';
 // import styles from './Components/appStyle.module.css';
 // import Form from './Components/Form';
-import LifeCycleA from './Components/LifeCycleA';
+// import LifeCycleA from './Components/LifeCycleA';
 
 function App() {
   return (
     <>
-      <LifeCycleA />
+      <ClickCounter />
+      <HoverCounter />
+      {/* <ErrorBoundary>
+        <Hero heroName="BatMan" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Hero heroName="superMan" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Hero heroName="Joker" />
+      </ErrorBoundary> */}
+      {/* <PortalDemo /> */}
+      {/* <FRParentInput /> */}
+      {/* <FocusInput /> */}
+      {/* <RefsDemo /> */}
+      {/* <FragmentDemo /> */}
+      {/* <ParentComp /> */}
+      {/* <LifeCycleA /> */}
       {/* <Form /> */}
       {/* <h1 className="error">Heading1</h1>
       <h2 className={styles.success}>Heading2</h2> */}

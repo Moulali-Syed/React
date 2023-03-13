@@ -1,0 +1,44 @@
+Forwarding Refs:
+
+It is a concept of passing ref from parent to one of its child 
+
+
+import React from 'react';
+
+//forwardRef accepts the component , in the component we can have 2nd parameter as ref 
+
+const FRInput = React.forwardRef((props, ref) => {
+  return (
+    <div>
+      <input type="text" ref={ref} />
+    </div>
+  );
+});
+
+export default FRInput;
+
+------------
+
+import React, { Component } from 'react';
+import FRInput from './FRInput';
+
+class FRParentInput extends Component {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
+
+  clickHandler = () => {
+    this.inputRef.current.focus();
+  };
+  render() {
+    return (
+      <div>
+        <FRInput ref={this.inputRef} />
+        <button onClick={this.clickHandler}>FocusInput</button>
+      </div>
+    );
+  }
+}
+
+export default FRParentInput;

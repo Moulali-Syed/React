@@ -1,0 +1,68 @@
+Refs with class components:
+
+we want to focus on a input element from the parent component 
+
+1.we create Ref
+2.we attach it to the element , we can focus on the input element in componentDidMount but we donot need that
+    instead need to focus from parent component 
+
+3.create a method to have focus on input element , later access it from parent 
+
+
+Then create a Parent Component , class based 
+then add the component above created and also add a button in JSX 
+When we click on the parent component button , child should receive the focus , we achieve using refs 
+
+
+import React, { Component } from 'react';
+
+class Input extends Component {
+  constructor(props) {
+    super(props);
+
+    this.inputRef = React.createRef();
+  }
+
+  focusInput() {
+    this.inputRef.current.focus();
+  }
+  render() {
+    return (
+      <div>
+        <input type="text" ref={this.inputRef} />
+      </div>
+    );
+  }
+}
+
+export default Input;
+
+-------
+import React, { Component } from 'react';
+import Input from './Input';
+
+class FocusInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.componentRef = React.createRef();
+  }
+
+  clickHandler = () => {
+    this.componentRef.current.focusInput();
+  };
+  render() {
+    return (
+      <div>
+        <Input ref={this.componentRef} />
+        <button onClick={this.clickHandler}>FocusInput</button>
+      </div>
+    );
+  }
+}
+
+export default FocusInput;
+
+
+Reference to a child component from parent component is definitely possible
+the component should be class component , later we got hooks for functional component 
