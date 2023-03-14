@@ -39,7 +39,7 @@ rules of JSX:
             let bg = "dark";
             <div className={bg}></div>
 
-3.<h1 style={backgroundColor:'red'}></h1>
+3.<h1 style={{backgroundColor:'red'}}></h1>
 
 
 4.variables - {varName}

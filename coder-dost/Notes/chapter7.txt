@@ -1,0 +1,6 @@
+useEffect
+
+If we want to make any changes after a component is rendered , we use useEffect hook 
+
+
+======================================================================================

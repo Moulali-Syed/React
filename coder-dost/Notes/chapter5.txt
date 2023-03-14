@@ -1,4 +1,57 @@
+state ,useState Hook:
+
+By using normal javascript variable ,we cannot update the UI 
+
+as in below way , we can see in console , value is increasing but in the UI it is not updating
+
+to overcome this problem we have useState hook, which react tracks and updates the state
+
+
+import React from 'react';
+
+const Counter = () => {
+  let number = 0;
+
+  function clickHandler() {
+    number++;
+    console.log(number);
+  }
+  return (
+    <>
+      <h1 onClick={clickHandler}>{number}</h1>
+    </>
+  );
+};
+
+export default Counter;
 
 
 
 ======================================================================================
+using useState
+
+state updates asynchronously
+
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+  const [number, setNumber] = useState(0);
+
+  function clickHandler(e) {
+    e.stopPropagation();
+    setNumber((number) => number + 1);  //******** update based on the previous value *********//
+  }
+  return (
+    <>
+      <h1 onClick={clickHandler}>{number}</h1>
+    </>
+  );
+};
+
+export default Counter;
+
+======================================================================================
+
+
+
