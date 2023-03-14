@@ -4,7 +4,10 @@
 // import PlayButton from './components/PlayButton';
 // import Video from './components/Video';
 
-import Todo from './todo-list/Todo';
+import CRUD from './todo-list-2/CRUD';
+
+// import TodoApp from './todo-list-2/TodoApp';
+// import Todo from './todo-list/Todo';
 
 // import BasePage from './todo-list/BasePage';
 // import Todo from './todo-list/Todo';
@@ -62,7 +65,7 @@ import Todo from './todo-list/Todo';
 const App = () => {
   return (
     <>
-      <Todo />
+      <CRUD />
     </>
   );
 };
